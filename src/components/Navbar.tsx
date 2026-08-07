@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Flame, Menu, X, Sparkles, ArrowUpRight, Share2 } from "lucide-react";
+import { Flame, Menu, X, Sparkles, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
@@ -22,10 +22,9 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Talent Hub", href: "#talent" },
-    { name: "Global Campaigns", href: "#campaigns" },
-    { name: "Live & Events", href: "#events" },
-    { name: "Brief Generator", href: "#brief" },
+    { name: "Talent", href: "#talent" },
+    { name: "Work", href: "#work" },
+    { name: "Live", href: "#events" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -37,62 +36,68 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(212, 175, 55, 0.2)" : "none",
-        boxShadow: scrolled 
-          ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" 
-          : "none"
+        boxShadow: scrolled
+          ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+          : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-3">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121217] border border-[#d4af37]/20 group-hover:scale-105 transition-transform duration-300">
-            <Flame 
-              className="w-6 h-6 text-[#d4af37] group-hover:text-[#e6c14d] transition-colors duration-300"
+      {/* Increased height wrapper */}
+      <div className="min-h-[80px] max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand Logo - Increased size and breathing room */}
+        <a href="#" className="group flex items-center gap-4 ml-2">
+          <div className="relative flex items-center justify-center w-14 h-14 rounded-2xl bg-[#121217] border border-[#d4af37]/20 group-hover:scale-105 transition-transform duration-300">
+            <Flame
+              className="w-7 h-7 text-[#d4af37] group-hover:text-[#e6c14d] transition-colors duration-300"
               style={{ filter: scrolled ? "drop-shadow(0 0 6px rgba(212, 175, 55, 0.3))" : "none" }}
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-extrabold text-lg tracking-wider text-white font-mono flex items-center gap-1">
-              THE FORGE <span className="text-[#d4af37] text-xs px-1.5 py-0.5 rounded bg-[#d4af37]/10 border border-[#d4af37]/20 group-hover:bg-[#d4af37]/20 transition-colors">CENTRAL</span>
+            {/* Removed the overlapping agency tagline */}
+            <span className="font-extrabold text-xl tracking-wider text-white font-mono flex items-center gap-1">
+              THE FORGE{" "}
+              <span className="text-[#d4af37] text-xs px-1.5 py-0.5 rounded bg-[#d4af37]/10 border border-[#d4af37]/20 group-hover:bg-[#d4af37]/20 transition-colors">
+                CENTRAL
+              </span>
             </span>
-            <span className="text-[10px] text-zinc-300 tracking-widest uppercase group-hover:text-zinc-200 transition-colors">360 Creative Agency</span>
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-10">
+        {/* Desktop Navigation - Prevents wrapping */}
+        <nav className="hidden md:flex flex-nowrap items-center gap-12">
           {navLinks.map((link) => (
-            <a
+            <motion.a
               key={link.name}
               href={link.href}
-              className="text-base font-medium text-zinc-300 hover:text-[#d4af37] transition-colors duration-300 relative"
+              className="text-base font-medium text-zinc-300 hover:text-[#d4af37] transition-colors duration-300 relative whitespace-nowrap"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37]/30 to-[#d4af37]/30 transition-all duration-300" />
-            </a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37]/30 to-[#d4af37]/30 transition-all duration-300 group-hover:w-full" />
+            </motion.a>
           ))}
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden md:flex items-center gap-6">
           {/* CTA Brief Generator button - Primary (Solid Gold) */}
           <motion.a
             href="#brief"
             onClick={onOpenBriefModal}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden px-6 py-3 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c14d] to-[#d4af37] text-white font-semibold text-sm uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#d4af37]_30"
+            className="relative overflow-hidden px-6 py-3 rounded-xl bg-[#d4af37] text-white font-semibold text-sm uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/40 transition-all"
           >
             <Sparkles className="w-4 h-4" />
             <span>Launch Brief</span>
           </motion.a>
-          
+
           {/* Portfolio Link - Secondary (Ghost/Text) */}
           <motion.a
             href="/portfolio"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="relative overflow-hidden px-4 py-2 rounded-xl border border-[#d4af37]/20 text-[#d4af37] font-semibold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#d4af37]/10 transition-all"
+            className="relative overflow-hidden px-4 py-2 rounded-xl border border-[#d4af37]/20 text-[#d4af37] font-semibold text-sm uppercase tracking-wider flex items-center gap-2 hover:text-[#e6c14d] transition-all"
           >
             <Share2 className="w-3 h-3" />
             <span>Portfolio</span>
@@ -100,7 +105,7 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
         </div>
 
         {/* Mobile menu trigger */}
-        <div className="flex md:hidden items-center gap-3">
+        <div className="flex md:hidden items-center">
           <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileHover={{ scale: 1.05 }}
@@ -114,7 +119,7 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
 
       {/* Mobile Drawer */}
       <AnimatePresence>
-         {mobileMenuOpen && (
+        {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,10 +144,10 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="mt-4 w-full py-3 rounded-xl bg-[#121217]/80 border border-[#d4af37]/20 text-white font-bold text-center text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#d4af37]/30 backdrop-blur-sm"
+                className="mt-4 w-full py-3 rounded-xl bg-[#d4af37] text-white font-bold text-center text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#d4af37]/30"
               >
                 <Sparkles className="w-4 h-4" />
-                Launch Brief Generator
+                Launch Brief
               </motion.a>
             </div>
           </motion.div>

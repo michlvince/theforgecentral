@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
 import HeroSection from "@/components/HeroSection";
-import ServicesMatrix from "@/components/ServicesMatrix";
+import ServicesHorizontal from "@/components/ServicesHorizontal";
 import TalentSpotlight from "@/components/TalentSpotlight";
 import InteractiveCaseStudies from "@/components/InteractiveCaseStudies";
 import BriefGenerator from "@/components/BriefGenerator";
@@ -14,40 +14,64 @@ import Footer from "@/components/Footer";
 import Portfolio from "@/app/portfolio";
 
 export default function Home() {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  useEffect(() => {
+    // Transition to landing page after a brief moment
+    const timer = setTimeout(() => {
+      setShowWelcome(false);
+    }, 500); // 500ms delay for welcome screen
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-[#050507] text-zinc-100 relative overflow-hidden selection:bg-orange-500 selection:text-white">
-      {/* Interactive WebGL/Canvas Particle Hero Background */}
-      <HeroCanvas />
+    <>
+      {/* Welcome Screen */}
+      {showWelcome && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <div className="text-center">
+            <h1 className="text-5xl font-extrabold text-white tracking-tight">
+              WELCOME TO THE FORGE
+            </h1>
+          </div>
+        </div>
+      )}
 
-      {/* Navigation Bar */}
-      <Navbar />
+      {/* Landing Page Content */}
+      <main className="min-h-screen bg-[#050507] text-zinc-100 relative overflow-hidden selection:bg-orange-500 selection:text-white">
+        {/* Interactive WebGL/Canvas Particle Hero Background */}
+        <HeroCanvas />
 
-      {/* Hero Section */}
-      <HeroSection />
+        {/* Navigation Bar */}
+        <Navbar />
 
-      {/* Services Showcase (All 5 Pillars with Simulators) */}
-      <ServicesMatrix />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* Talent Accelerator Spotlight */}
-      <TalentSpotlight />
+        {/* Services Showcase (All 6 Pillars - Horizontal Interactive Section) */}
+        <ServicesHorizontal />
 
-      {/* Featured Global Narrative Campaigns */}
-      <InteractiveCaseStudies />
+        {/* Talent Accelerator Spotlight */}
+        <TalentSpotlight />
 
-       {/* Live Events & Experiences */}
-       <LiveEventsSection />
+        {/* Featured Global Narrative Campaigns */}
+        <InteractiveCaseStudies />
 
-       {/* Portfolio Gallery */}
-       <Portfolio />
+        {/* Live Events & Experiences */}
+        <LiveEventsSection />
 
-       {/* Interactive Campaign Brief Generator */}
-      <BriefGenerator />
+        {/* Portfolio Gallery */}
+        <Portfolio />
 
-      {/* Global Directory & Contact Section */}
-      <ContactSection />
+        {/* Interactive Campaign Brief Generator */}
+        <BriefGenerator />
 
-      {/* Agency Footer */}
-      <Footer />
-    </main>
+        {/* Global Directory & Contact Section */}
+        <ContactSection />
+
+        {/* Agency Footer */}
+        <Footer />
+      </main>
+    </>
   );
 }
