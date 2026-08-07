@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Flame, Eye, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { campaigns } from "@/lib/campaigns";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export default function InteractiveCaseStudies() {
   const [activeFilter, setActiveFilter] = useState("all");
