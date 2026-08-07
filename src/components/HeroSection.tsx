@@ -42,7 +42,7 @@ export default function HeroSection() {
       <div className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] bg-gradient-to-tr from-[#050507]/10 via-[#d4af37]/10 to-[#050507]/5 rounded-full blur-[100px] pointer-events-none animate-[float_8s_ease-in-out_infinite] delay-2000" />
       <div className="absolute top-1/5 right-1/5 w-[200px] h-[200px] bg-[#d4af37]/10 rounded-full blur-[80px] pointer-events-none animate-[pulse_4s_ease-in-out_infinite] delay-4000" />
 
-      <div className="relative z-10 max-w-6xl mx-auto text-center">
+       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Animated Header */}
         <motion.div
           initial={{ opacity: 0, y: -30, scale: 0.9 }}
