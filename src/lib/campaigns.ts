@@ -1,0 +1,38 @@
+export const campaigns = [
+  {
+    id: "1",
+    title: "OBSIDIAN & FLAME: TOKYO TAKEOVER",
+    category: "Fashion & Events",
+    client: "Luxury Apparel Brand",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop",
+    metrics: "14.2M Live Views • PFW Headline",
+    desc: "360 Runway production, spatial 3D lighting design, and global PR takeover across Tokyo & Paris.",
+  },
+  {
+    id: "2",
+    title: "AFRO-FUTURISM VISUAL ALBUM",
+    category: "Visual Storytelling & Music",
+    client: "Global Recording Artist",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop",
+    metrics: "85M Streams • Cannes Lions Finalist",
+    desc: "Full album visual direction, cinematic short film, and sonic branding strategy.",
+  },
+  {
+    id: "3",
+    title: "NEXT-GEN AUTOMOTIVE REBRAND",
+    category: "Branding & Media",
+    client: "EV Hypercar Manufacturer",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop",
+    metrics: "$320M Pre-orders • 400+ Press Outlets",
+    desc: "Complete brand architecture, 3D launch video, and tier-1 global press placement.",
+  },
+  {
+    id: "4",
+    title: "LAGOS CREATIVE FESTIVAL EXPERIENCE",
+    category: "Events & Live",
+    client: "Culture & Tech Summit",
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop",
+    metrics: "12,000 Live Attendees • 3.4M Livestream",
+    desc: "Immersive live stage direction, sound engineering, and talent curation.",
+  },
+];
