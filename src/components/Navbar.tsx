@@ -11,7 +11,6 @@ interface NavbarProps {
 export default function Navbar({ onOpenBriefModal }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navHoverIndex, setNavHoverIndex] = useState(-1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,86 +44,77 @@ export default function Navbar({ onOpenBriefModal }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-[#121217] border border-[#d4af37]/20 group-hover:scale-105 transition-transform duration-500">
+        <a href="#" className="flex items-center gap-3">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121217] border border-[#d4af37]/20 group-hover:scale-105 transition-transform duration-300">
             <Flame 
-              className="w-5 h-5 text-[#d4af37] group-hover:text-[#e6c14d] transition-colors duration-500"
-              style={{ filter: scrolled ? "drop-shadow(0 0 8px rgba(212, 175, 55, 0.3))" : "none" }}
+              className="w-6 h-6 text-[#d4af37] group-hover:text-[#e6c14d] transition-colors duration-300"
+              style={{ filter: scrolled ? "drop-shadow(0 0 6px rgba(212, 175, 55, 0.3))" : "none" }}
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-extrabold text-base tracking-wider text-white font-mono flex items-center gap-1">
-              THE FORGE <span className="text-[#d4af37] text-xs px-1 py-0.5 rounded bg-[#d4af37]/10 border border-[#d4af37]/20 group-hover:bg-[#d4af37]/20 transition-colors">CENTRAL</span>
+            <span className="font-extrabold text-lg tracking-wider text-white font-mono flex items-center gap-1">
+              THE FORGE <span className="text-[#d4af37] text-xs px-1.5 py-0.5 rounded bg-[#d4af37]/10 border border-[#d4af37]/20 group-hover:bg-[#d4af37]/20 transition-colors">CENTRAL</span>
             </span>
-            <span className="text-[9px] text-zinc-300 tracking-widest uppercase group-hover:text-zinc-200 transition-colors">360 Creative Agency</span>
+            <span className="text-[10px] text-zinc-300 tracking-widest uppercase group-hover:text-zinc-200 transition-colors">360 Creative Agency</span>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link, index) => (
-            <motion.a
+        <nav className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <a
               key={link.name}
               href={link.href}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`relative text-base font-medium text-zinc-300 hover:text-[#d4af37] transition-colors duration-300 ${
-                navHoverIndex === index ? "text-[#d4af37]" : ""
-              }`}
-              onMouseEnter={() => setNavHoverIndex(index)}
-              onMouseLeave={() => setNavHoverIndex(-1)}
+              className="text-base font-medium text-zinc-300 hover:text-[#d4af37] transition-colors duration-300 relative"
             >
               {link.name}
-              <motion.span
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37]/30 to-[#d4af37]/30 transition-all duration-500"
-                style={{ width: navHoverIndex === index ? "100%" : "0%" }}
-              />
-            </motion.a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37]/30 to-[#d4af37]/30 transition-all duration-300" />
+            </a>
           ))}
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden md:flex items-center gap-4">
-          {/* CTA Brief Generator button */}
+        <div className="hidden md:flex items-center gap-5">
+          {/* CTA Brief Generator button - Primary (Solid Gold) */}
           <motion.a
             href="#brief"
             onClick={onOpenBriefModal}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative overflow-hidden px-5 py-2.5 rounded-xl bg-[#121217]/60 border border-[#d4af37]/20 text-white font-semibold text-xs uppercase tracking-wider flex items-center gap-2 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative overflow-hidden px-6 py-3 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c14d] to-[#d4af37] text-white font-semibold text-sm uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#d4af37]_30"
           >
             <Sparkles className="w-4 h-4" />
             <span>Launch Brief</span>
           </motion.a>
           
-          {/* Portfolio Link */}
+          {/* Portfolio Link - Secondary (Ghost/Text) */}
           <motion.a
             href="/portfolio"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="relative overflow-hidden px-5 py-2.5 rounded-xl bg-[#121217]/60 border border-[#d4af37]/20 text-white font-semibold text-xs uppercase tracking-wider flex items-center gap-2 backdrop-blur-sm"
+            className="relative overflow-hidden px-4 py-2 rounded-xl border border-[#d4af37]/20 text-[#d4af37] font-semibold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#d4af37]/10 transition-all"
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-3 h-3" />
             <span>Portfolio</span>
           </motion.a>
         </div>
 
         {/* Mobile menu trigger */}
         <div className="flex md:hidden items-center gap-3">
-           <motion.button
-             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             className="p-2 rounded-xl bg-[#121217]/60 border border-[#d4af37]/15 text-[#d4af37] hover:bg-[#121217]/90 hover:border-[#d4af37]/30 transition-all"
-           >
-             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-           </motion.button>
+          <motion.button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 rounded-xl bg-[#121217]/60 border border-[#d4af37]/15 text-[#d4af37] hover:bg-[#121217]/90 hover:border-[#d4af37]/30 transition-all"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </motion.button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
